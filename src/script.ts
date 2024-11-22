@@ -1,12 +1,14 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const button = document.getElementById("testButton") as HTMLButtonElement | null;
-  const output = document.getElementById("output") as HTMLParagraphElement | null;
+import '@material/web/button/filled-button.js';
+import '@material/web/button/outlined-button.js';
 
-  if (button && output) {
-    button.addEventListener("click", () => {
-      output.textContent = "TypeScript is working!";
-    });
-  } else {
-    console.error("Button or output element is missing in the DOM.");
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Home page loaded!");
+
+  // Smooth scroll to sections
+  (window as any).scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 });

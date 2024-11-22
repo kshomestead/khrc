@@ -1,32 +1,68 @@
+:root {
+  --md-sys-color-primary: #6200ee;
+  --md-sys-color-on-primary: #fff;
+  --md-sys-color-outline: #000;
+  --md-sys-color-surface: #fff;
+  --md-sys-color-on-surface: #000;
+}
+
 body {
+  color: var(--md-sys-color-on-surface);
   text-align: center;
-  background-color: #f8f9fa;
+  background-color: #f6f6f6;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
+  line-height: 1.6;
 }
 
 header {
-  color: #fff;
-  background-color: #004aad;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
   padding: 20px 0;
 }
 
-main {
-  margin: 20px;
+header h1 {
+  margin-bottom: 10px;
+  font-size: 2rem;
 }
 
-button {
-  cursor: pointer;
-  color: #fff;
-  background-color: #004aad;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
+header nav {
+  margin-top: 20px;
 }
 
-button:hover {
-  background-color: #003580;
+header md-filled-button {
+  margin: 0 10px;
+}
+
+main section {
+  border-bottom: 1px solid #ddd;
+  padding: 40px 20px;
+}
+
+main section h2 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+main section p {
+  margin-bottom: 20px;
+}
+
+.button-group {
+  justify-content: center;
+  gap: 10px;
+  display: flex;
+}
+
+button-group md-outlined-button {
+  margin: 10px;
+}
+
+footer {
+  color: #666;
+  background-color: #eee;
+  padding: 20px;
+  font-size: .9rem;
 }
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

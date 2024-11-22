@@ -4,21 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loan Portal</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- External CSS -->
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+  <!-- Header Section -->
   <header>
     <h1>Welcome to the Loan Portal</h1>
-    <p>Your trusted partner for financial solutions.</p>
+    <p>Your trusted partner for financial solutions</p>
+    <nav>
+      <md-filled-button onclick="scrollToSection('services')">Our Services</md-filled-button>
+      <md-filled-button onclick="scrollToSection('about')">About Us</md-filled-button>
+      <md-filled-button onclick="scrollToSection('contact')">Contact Us</md-filled-button>
+    </nav>
   </header>
+
+  <!-- Main Content -->
   <main>
-    <button id="testButton">Click Me!</button>
-    <p id="output"></p>
+    <!-- Services Section -->
+    <section id="services">
+      <h2>Our Services</h2>
+      <p>Explore a range of financial solutions tailored for you:</p>
+      <div class="button-group">
+        <md-outlined-button onclick="alert('Personal Loans')">Personal Loans</md-outlined-button>
+        <md-outlined-button onclick="alert('Business Loans')">Business Loans</md-outlined-button>
+        <md-outlined-button onclick="alert('Mortgage')">Mortgage</md-outlined-button>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+      <h2>About Us</h2>
+      <p>
+        At Loan Portal, we are committed to providing secure and accessible financial services to our customers. 
+        With years of experience and a customer-first approach, we are your trusted partner in achieving your financial goals.
+      </p>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Have questions or need support? Reach out to us today!</p>
+      <md-filled-button onclick="window.location.href='mailto:support@loanportal.com'">Email Us</md-filled-button>
+    </section>
   </main>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2024 Loan Portal</p>
+    <p>&copy; 2024 Loan Portal. All rights reserved.</p>
   </footer>
-  <!-- Link the TypeScript file -->
+
+  <!-- TypeScript -->
   <script type="module" src="./script.ts"></script>
 </body>
 </html>
