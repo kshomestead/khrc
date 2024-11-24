@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.navbar {
+  color: #060606;
+  z-index: 1000;
+  box-sizing: border-box;
+  background-color: #6f8b75;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  position: fixed;
+  top: 0;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+.navbar-logo {
+  align-items: center;
+  display: flex;
+}
+
+.logo-image {
+  object-fit: contain;
+  width: auto;
+  height: 40px;
+}
+
+.navbar-links {
+  gap: 1rem;
+  display: flex;
+}
+
+md-elevated-button {
+  text-transform: none;
+  font-weight: 400;
+}
+
+md-outlined-button {
+  text-transform: none;
+  color: #010201;
+  background-color: #0000;
+  border: 2px solid #2a5d34;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  transition: background-color .3s, color .3s;
+}
+
+md-outlined-button:hover {
+  cursor: pointer;
+  background-color: #afb5b1;
+}
+
+md-outlined-button:focus {
+  outline: none;
+}
+
+@media (width <= 768px) {
+  .navbar-links {
+    display: none;
+  }
+}
+
+.section {
+  min-height: 100vh;
+  padding: 5rem 2rem 2rem;
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.section h2 {
+  color: #2a5d34;
+  font-size: 2rem;
+}
+
+.bottom-nav {
+  color: #fff;
+  z-index: 1000;
+  box-sizing: border-box;
+  background-color: #2a5d34;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: .5rem 0;
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -4px 8px #0000001a;
+}
+
+.bottom-nav .nav-item {
+  color: #f9f6ee;
+  cursor: pointer;
+  background: none;
+  border: none;
+  flex-direction: column;
+  align-items: center;
+  font-size: .875rem;
+  text-decoration: none;
+  display: flex;
+}
+
+.bottom-nav .nav-item:hover {
+  color: #bb86fc;
+}
+
+.bottom-nav .material-symbols-outlined {
+  font-size: 1.5rem;
+}
+
+@media (width <= 768px) {
+  .bottom-nav {
+    display: flex;
+  }
+}
+/*# sourceMappingURL=index.4d663569.css.map */

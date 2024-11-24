@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Kansas Homestead Rehabilitation Corporation</title>
+  <!-- Include necessary styles -->
+  <style>body {
+  color: #1f2937;
+  background-color: #f9fafb;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+}
+
+.container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  display: flex;
+}
+
+.form-container {
+  background-color: #fff;
+  border-radius: .5rem;
+  width: 100%;
+  max-width: 24rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px #0000000d;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form-header img {
+  transform-origin: center;
+  transform: scale(2);
+}
+
+.form-title {
+  color: #1f2937;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  color: #1f2937;
+  margin-bottom: .5rem;
+  font-size: .875rem;
+  font-weight: 500;
+  display: block;
+}
+
+.form-group input {
+  color: #1f2937;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: .5rem;
+  width: 100%;
+  padding: .625rem;
+}
+
+.form-group input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.form-footer {
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.forgot-password {
+  color: #3b82f6;
+  cursor: pointer;
+  font-size: .875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.submit-button {
+  color: #000;
+  cursor: pointer;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: .5rem;
+  width: 100%;
+  padding: .625rem;
+  font-size: 1rem;
+  transition: background-color .2s;
+}
+
+.submit-button:hover {
+  background-color: #f3f4f6;
+}
+
+.popup {
+  color: #fff;
+  z-index: 1000;
+  border-radius: .5rem;
+  padding: 1rem;
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.popup.info {
+  background-color: #2563eb;
+}
+
+.popup.success {
+  background-color: #16a34a;
+}
+
+.popup.error {
+  background-color: #dc2626;
+}
+</style>
+
+  <!-- Include Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Popup Message -->
+  <div id="popup" class="popup"></div>
+
+  <!-- Login Form Section -->
+  <section class="container">
+    <div class="form-container">
+      <!-- Logo Section Inside Form Box -->
+      <div class="form-header">
+        <img src="/logo.d68a5b63.png" alt="Your Logo">
+      </div>
+      <h1 id="form-title" class="form-title">Sign in to your account</h1>
+      <form id="login-form">
+        <!-- Dynamic form fields will be injected here -->
+      </form>
+    </div>
+  </section>
+
+  <!-- JavaScript code -->
+  <script>// JavaScript code converted from your Svelte component
+// State variables
+let email = "";
+let password = "";
+let newPassword = "";
+let resetCode = "";
+let needsNewPassword = false;
+let isForgotPasswordMode = false;
+let showResetCodeInput = false;
+let sessionToken = "";
+// Popup elements
+const popup = document.getElementById('popup');
+// Form elements
+const formTitle = document.getElementById('form-title');
+const loginForm = document.getElementById('login-form');
+// Function to display popup messages
+function showPopup(message, type) {
+    popup.textContent = message;
+    popup.className = 'popup ' + type;
+    popup.style.display = 'block';
+    setTimeout(()=>{
+        popup.style.display = 'none';
+    }, 3000);
+}
+// Function to reset form inputs and state variables
+function resetInputs() {
+    email = "";
+    password = "";
+    newPassword = "";
+    resetCode = "";
+    needsNewPassword = false;
+    isForgotPasswordMode = false;
+    showResetCodeInput = false;
+    sessionToken = "";
+}
+// Function to render the form based on the current state
+function renderForm() {
+    loginForm.innerHTML = ''; // Clear the form
+    if (needsNewPassword) {
+        formTitle.textContent = 'Set New Password';
+        // New Password Input
+        loginForm.appendChild(createInputField('New Password', 'newPassword', 'password', newPassword));
+    } else if (isForgotPasswordMode) {
+        if (showResetCodeInput) {
+            formTitle.textContent = 'Reset your password';
+            // Reset Code Input
+            loginForm.appendChild(createInputField('Reset Code', 'resetCode', 'text', resetCode));
+            // New Password Input
+            loginForm.appendChild(createInputField('New Password', 'newPassword', 'password', newPassword));
+        } else {
+            formTitle.textContent = 'Forgot Password';
+            // Email Input
+            loginForm.appendChild(createInputField('Enter your email to reset password', 'email', 'email', email));
+        }
+    } else {
+        formTitle.textContent = 'Sign in to your account';
+        // Email Input
+        loginForm.appendChild(createInputField('Your Email', 'email', 'email', email));
+        // Password Input
+        loginForm.appendChild(createInputField('Password', 'password', 'password', password));
+        // Forgot Password Link
+        const forgotPasswordLink = document.createElement('div');
+        forgotPasswordLink.className = 'form-footer';
+        const forgotPasswordButton = document.createElement('a');
+        forgotPasswordButton.className = 'forgot-password';
+        forgotPasswordButton.textContent = 'Forgot password?';
+        forgotPasswordButton.addEventListener('click', handleForgotPassword);
+        forgotPasswordLink.appendChild(forgotPasswordButton);
+        loginForm.appendChild(forgotPasswordLink);
+    }
+    // Submit Button
+    const submitButton = document.createElement('button');
+    submitButton.type = 'submit';
+    submitButton.className = 'submit-button';
+    if (needsNewPassword) submitButton.textContent = 'Set New Password';
+    else if (isForgotPasswordMode) submitButton.textContent = showResetCodeInput ? 'Reset Password' : 'Send Reset Code';
+    else submitButton.textContent = 'Sign in';
+    loginForm.appendChild(submitButton);
+    // Add event listener for form submission
+    loginForm.addEventListener('submit', handleLogin);
+}
+// Function to create input fields
+function createInputField(labelText, fieldName, type, value) {
+    const formGroup = document.createElement('div');
+    formGroup.className = 'form-group';
+    const label = document.createElement('label');
+    label.htmlFor = fieldName;
+    label.textContent = labelText;
+    formGroup.appendChild(label);
+    const input = document.createElement('input');
+    input.type = type;
+    input.id = fieldName;
+    input.name = fieldName;
+    input.value = value;
+    input.required = true;
+    // Update the corresponding state variable on input
+    input.addEventListener('input', (event)=>{
+        window[fieldName] = event.target.value;
+    });
+    formGroup.appendChild(input);
+    return formGroup;
+}
+// Function to handle form submission
+async function handleLogin(event) {
+    event.preventDefault();
+    // Handle the case where the user needs to set a new password
+    if (needsNewPassword) {
+        try {
+            // Call your signIn function with newPassword
+            const tokens = await signIn(email, password, newPassword, sessionToken);
+            processTokens(tokens);
+        } catch (error) {
+            showPopup('Failed to set new password. Please try again.', 'error');
+        }
+        return;
+    }
+    // Handle forgot password flow
+    if (isForgotPasswordMode) {
+        if (showResetCodeInput) try {
+            // Call your confirmPasswordReset function
+            await confirmPasswordReset(email, resetCode, newPassword);
+            showPopup('Password reset successful. Please log in with your new password.', 'success');
+            resetInputs();
+            renderForm();
+        } catch (error) {
+            showPopup('Failed to reset password. Please try again.', 'error');
+        }
+        else try {
+            // Call your forgotPassword function
+            await forgotPassword(email);
+            showPopup('A password reset code has been sent to your email.', 'info');
+            showResetCodeInput = true;
+            renderForm();
+        } catch (error) {
+            showPopup('Failed to initiate password reset. Please try again.', 'error');
+        }
+        return;
+    }
+    // Handle regular sign-in process
+    try {
+        // Call your signIn function
+        const tokens = await signIn(email, password);
+        processTokens(tokens);
+    } catch (error) {
+        if (error && error.message === 'NEW_PASSWORD_REQUIRED') {
+            needsNewPassword = true;
+            sessionToken = error.session;
+            showPopup('Please set a new password to continue.', 'info');
+            renderForm();
+        } else if (error && error.message && error.message.includes('Incorrect username or password')) showPopup('Incorrect username or password.', 'error');
+        else if (error && error.message && error.message.includes('User does not exist')) showPopup('User does not exist. Please check your email or contact the administrator.', 'error');
+        else if (error && error.message && error.message.includes('Password reset required')) showPopup('Password reset required. Please reset your password to continue.', 'info');
+        else if (error && error.message && error.message.includes('User is not confirmed')) showPopup('User is not confirmed. Please check your email for the confirmation link.', 'error');
+        else showPopup('Login failed: An unknown error occurred during sign-in.', 'error');
+    }
+}
+// Function to handle "Forgot password?" button click
+function handleForgotPassword() {
+    isForgotPasswordMode = true;
+    showResetCodeInput = false;
+    email = ''; // Clear email input for the user to enter
+    renderForm();
+}
+// Function to process tokens after successful login
+function processTokens(tokens) {
+    // Store tokens securely
+    localStorage.setItem('idToken', tokens.IdToken);
+    localStorage.setItem('accessToken', tokens.AccessToken);
+    // Decode the IdToken payload
+    const payload = JSON.parse(atob(tokens.IdToken.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+    const userGroups = payload['cognito:groups'] || [];
+    const firstName = payload['given_name'];
+    const lastName = payload['family_name'];
+    // Create the user object
+    const userData = {
+        firstName: firstName || '',
+        lastName: lastName || '',
+        userGroup: userGroups[0] || ''
+    };
+    // Store user data in localStorage or handle as needed
+    localStorage.setItem('userData', JSON.stringify(userData));
+    // Redirect user based on their group
+    if (userGroups.includes('admin')) window.location.href = '/dashboard/admin';
+    else if (userGroups.includes('fsa')) window.location.href = '/dashboard/fsa';
+    else if (userGroups.includes('borrower')) window.location.href = '/dashboard/borrower';
+    else if (userGroups.includes('board')) window.location.href = '/dashboard/board';
+    else {
+        showPopup('Access denied. Unauthorized user group.', 'error');
+        window.location.href = '/login';
+    }
+}
+// Mock implementations of auth functions (Replace these with your actual implementations)
+async function signIn(email, password, newPassword = '', sessionToken = '') {
+    // Implement your signIn logic here, possibly using AWS Cognito JS SDK
+    // For demonstration, return a mock token object
+    return new Promise((resolve, reject)=>{
+        // Simulate different scenarios based on input
+        if (email === 'test@example.com' && password === 'password') resolve({
+            IdToken: 'mockIdToken',
+            AccessToken: 'mockAccessToken'
+        });
+        else reject({
+            message: 'Incorrect username or password'
+        });
+    });
+}
+async function forgotPassword(email) {
+    // Implement your forgotPassword logic here
+    return new Promise((resolve)=>{
+        // Simulate sending reset code
+        resolve();
+    });
+}
+async function confirmPasswordReset(email, resetCode, newPassword) {
+    // Implement your confirmPasswordReset logic here
+    return new Promise((resolve)=>{
+        // Simulate password reset
+        resolve();
+    });
+}
+// Initial render
+renderForm();
+
+</script>
+<script src="/login.355e69e6.js"></script></body>
+</html>

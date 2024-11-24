@@ -1,68 +1,107 @@
-:root {
-  --md-sys-color-primary: #6200ee;
-  --md-sys-color-on-primary: #fff;
-  --md-sys-color-outline: #000;
-  --md-sys-color-surface: #fff;
-  --md-sys-color-on-surface: #000;
-}
-
 body {
-  color: var(--md-sys-color-on-surface);
-  text-align: center;
-  background-color: #f6f6f6;
+  color: #333;
+  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
-  font-family: Roboto, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   line-height: 1.6;
 }
 
-header {
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-  padding: 20px 0;
-}
-
-header h1 {
-  margin-bottom: 10px;
-  font-size: 2rem;
-}
-
-header nav {
-  margin-top: 20px;
-}
-
-header md-filled-button {
-  margin: 0 10px;
-}
-
-main section {
-  border-bottom: 1px solid #ddd;
-  padding: 40px 20px;
-}
-
-main section h2 {
-  margin-bottom: 10px;
-  font-size: 1.8rem;
-}
-
-main section p {
-  margin-bottom: 20px;
-}
-
-.button-group {
-  justify-content: center;
-  gap: 10px;
+.navbar {
+  color: #fff;
+  background-color: #3b3444;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
   display: flex;
 }
 
-button-group md-outlined-button {
-  margin: 10px;
+.navbar .brand h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.navbar nav {
+  gap: 15px;
+  display: flex;
+}
+
+.navbar .nav-link {
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  text-align: center;
+  background-color: #e0e0e0;
+  padding: 50px 20px;
+}
+
+.hero-title {
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.hero-subtitle {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.hero-button {
+  color: #fff;
+  background-color: #6200ee;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.hero-button:hover {
+  background-color: #3700b3;
+}
+
+.about-us {
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  box-shadow: 0 2px 4px #0000001a;
+}
+
+.about-us h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.about-us p {
+  margin-bottom: 15px;
+  font-size: 1rem;
 }
 
 footer {
+  text-align: center;
   color: #666;
   background-color: #eee;
   padding: 20px;
-  font-size: .9rem;
+  font-size: .875rem;
+}
+
+main {
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  display: flex;
+}
+
+section.about-us {
+  text-align: center;
+  max-width: 800px;
 }
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

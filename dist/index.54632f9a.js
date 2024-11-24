@@ -142,9 +142,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"j0nGe":[function(require,module,exports,__globalThis) {
+})({"4cgoj":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
-var HMR_HOST = null;
+var HMR_HOST = "127.0.0.1";
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
@@ -585,20 +585,48 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"gg0zR":[function(require,module,exports,__globalThis) {
+// Import Material Web button components and styles
 var _filledButtonJs = require("@material/web/button/filled-button.js");
-var _outlinedButtonJs = require("@material/web/button/outlined-button.js");
-document.addEventListener("DOMContentLoaded", ()=>{
-    console.log("Home page loaded!");
-    // Smooth scroll to sections
-    window.scrollToSection = (id)=>{
-        const section = document.getElementById(id);
-        if (section) section.scrollIntoView({
-            behavior: 'smooth'
-        });
-    };
-});
+// Constants
+// Define any reusable configuration or constants here
+const LOG_TAG = "[Navigation Handler]";
+// Functions
+/**
+ * Handles the navigation logic for buttons with an "href" attribute.
+ * @param button - The button element clicked by the user.
+ */ function handleNavigation(button) {
+    const targetHref = button.getAttribute("href");
+    if (targetHref) {
+        console.log(`${LOG_TAG} Navigating to ${targetHref}`);
+        window.location.href = targetHref; // Navigate to the target page
+    } else console.error(`${LOG_TAG} Error: 'href' attribute is missing or invalid.`);
+}
+/**
+ * Handles the click event for all <md-filled-button> elements.
+ * @param event - The click event triggered by the user.
+ */ function handleClickEvent(event) {
+    const targetElement = event.target;
+    // Find the closest <md-filled-button> element (if any)
+    const button = targetElement.closest("md-filled-button");
+    // If no button was clicked, exit the function early
+    if (!button) return;
+    // Check if the button has an "href" attribute and handle navigation
+    if (button.hasAttribute("href")) handleNavigation(button);
+    else console.warn(`${LOG_TAG} Unhandled button action.`);
+}
+// Main Execution
+/**
+ * Initializes event listeners and logs startup messages.
+ */ function initializeApp() {
+    console.log(`${LOG_TAG} Initializing application...`);
+    // Add a click event listener to the document
+    document.addEventListener("click", handleClickEvent);
+    console.log(`${LOG_TAG} Event listener for button clicks added.`);
+}
+// Start the application
+initializeApp();
 
-},{"@material/web/button/filled-button.js":"jVSiQ","@material/web/button/outlined-button.js":"aDwQD"}],"jVSiQ":[function(require,module,exports,__globalThis) {
+},{"@material/web/button/filled-button.js":"jVSiQ"}],"jVSiQ":[function(require,module,exports,__globalThis) {
 /**
  * @license
  * Copyright 2021 Google LLC
@@ -3744,60 +3772,6 @@ var _lit = require("lit");
 const styles = (0, _lit.css)`:host{border-start-start-radius:var(--_container-shape-start-start);border-start-end-radius:var(--_container-shape-start-end);border-end-start-radius:var(--_container-shape-end-start);border-end-end-radius:var(--_container-shape-end-end);box-sizing:border-box;cursor:pointer;display:inline-flex;gap:8px;min-height:var(--_container-height);outline:none;padding-block:calc((var(--_container-height) - max(var(--_label-text-line-height),var(--_icon-size)))/2);padding-inline-start:var(--_leading-space);padding-inline-end:var(--_trailing-space);place-content:center;place-items:center;position:relative;font-family:var(--_label-text-font);font-size:var(--_label-text-size);line-height:var(--_label-text-line-height);font-weight:var(--_label-text-weight);text-overflow:ellipsis;text-wrap:nowrap;user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0);vertical-align:top;--md-ripple-hover-color: var(--_hover-state-layer-color);--md-ripple-pressed-color: var(--_pressed-state-layer-color);--md-ripple-hover-opacity: var(--_hover-state-layer-opacity);--md-ripple-pressed-opacity: var(--_pressed-state-layer-opacity)}md-focus-ring{--md-focus-ring-shape-start-start: var(--_container-shape-start-start);--md-focus-ring-shape-start-end: var(--_container-shape-start-end);--md-focus-ring-shape-end-end: var(--_container-shape-end-end);--md-focus-ring-shape-end-start: var(--_container-shape-end-start)}:host(:is([disabled],[soft-disabled])){cursor:default;pointer-events:none}.button{border-radius:inherit;cursor:inherit;display:inline-flex;align-items:center;justify-content:center;border:none;outline:none;-webkit-appearance:none;vertical-align:middle;background:rgba(0,0,0,0);text-decoration:none;min-width:calc(64px - var(--_leading-space) - var(--_trailing-space));width:100%;z-index:0;height:100%;font:inherit;color:var(--_label-text-color);padding:0;gap:inherit;text-transform:inherit}.button::-moz-focus-inner{padding:0;border:0}:host(:hover) .button{color:var(--_hover-label-text-color)}:host(:focus-within) .button{color:var(--_focus-label-text-color)}:host(:active) .button{color:var(--_pressed-label-text-color)}.background{background-color:var(--_container-color);border-radius:inherit;inset:0;position:absolute}.label{overflow:hidden}:is(.button,.label,.label slot),.label ::slotted(*){text-overflow:inherit}:host(:is([disabled],[soft-disabled])) .label{color:var(--_disabled-label-text-color);opacity:var(--_disabled-label-text-opacity)}:host(:is([disabled],[soft-disabled])) .background{background-color:var(--_disabled-container-color);opacity:var(--_disabled-container-opacity)}@media(forced-colors: active){.background{border:1px solid CanvasText}:host(:is([disabled],[soft-disabled])){--_disabled-icon-color: GrayText;--_disabled-icon-opacity: 1;--_disabled-container-opacity: 1;--_disabled-label-text-color: GrayText;--_disabled-label-text-opacity: 1}}:host([has-icon]:not([trailing-icon])){padding-inline-start:var(--_with-leading-icon-leading-space);padding-inline-end:var(--_with-leading-icon-trailing-space)}:host([has-icon][trailing-icon]){padding-inline-start:var(--_with-trailing-icon-leading-space);padding-inline-end:var(--_with-trailing-icon-trailing-space)}::slotted([slot=icon]){display:inline-flex;position:relative;writing-mode:horizontal-tb;fill:currentColor;flex-shrink:0;color:var(--_icon-color);font-size:var(--_icon-size);inline-size:var(--_icon-size);block-size:var(--_icon-size)}:host(:hover) ::slotted([slot=icon]){color:var(--_hover-icon-color)}:host(:focus-within) ::slotted([slot=icon]){color:var(--_focus-icon-color)}:host(:active) ::slotted([slot=icon]){color:var(--_pressed-icon-color)}:host(:is([disabled],[soft-disabled])) ::slotted([slot=icon]){color:var(--_disabled-icon-color);opacity:var(--_disabled-icon-opacity)}.touch{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}:host([touch-target=wrapper]){margin:max(0px,(48px - var(--_container-height))/2) 0}:host([touch-target=none]) .touch{display:none}
 `;
 
-},{"lit":"4antt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aDwQD":[function(require,module,exports,__globalThis) {
-/**
- * @license
- * Copyright 2021 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MdOutlinedButton", ()=>MdOutlinedButton);
-var _tslib = require("tslib");
-var _decoratorsJs = require("lit/decorators.js");
-var _outlinedButtonJs = require("./internal/outlined-button.js");
-var _outlinedStylesJs = require("./internal/outlined-styles.js");
-var _sharedStylesJs = require("./internal/shared-styles.js");
-let MdOutlinedButton = class MdOutlinedButton extends (0, _outlinedButtonJs.OutlinedButton) {
-};
-MdOutlinedButton.styles = [
-    (0, _sharedStylesJs.styles),
-    (0, _outlinedStylesJs.styles)
-];
-MdOutlinedButton = (0, _tslib.__decorate)([
-    (0, _decoratorsJs.customElement)('md-outlined-button')
-], MdOutlinedButton);
-
-},{"tslib":"lRdW5","lit/decorators.js":"bCPKi","./internal/outlined-button.js":"brtRg","./internal/outlined-styles.js":"4FtYt","./internal/shared-styles.js":"ae1j2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"brtRg":[function(require,module,exports,__globalThis) {
-/**
- * @license
- * Copyright 2021 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * An outlined button component.
- */ parcelHelpers.export(exports, "OutlinedButton", ()=>OutlinedButton);
-var _lit = require("lit");
-var _buttonJs = require("./button.js");
-class OutlinedButton extends (0, _buttonJs.Button) {
-    renderElevationOrOutline() {
-        return (0, _lit.html)`<div class="outline"></div>`;
-    }
-}
-
-},{"lit":"4antt","./button.js":"jHB4r","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4FtYt":[function(require,module,exports,__globalThis) {
-/**
- * @license
- * Copyright 2024 Google LLC
- * SPDX-License-Identifier: Apache-2.0
- */ // Generated stylesheet for ./button/internal/outlined-styles.css.
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "styles", ()=>styles);
-var _lit = require("lit");
-const styles = (0, _lit.css)`:host{--_container-height: var(--md-outlined-button-container-height, 40px);--_disabled-label-text-color: var(--md-outlined-button-disabled-label-text-color, var(--md-sys-color-on-surface, #1d1b20));--_disabled-label-text-opacity: var(--md-outlined-button-disabled-label-text-opacity, 0.38);--_disabled-outline-color: var(--md-outlined-button-disabled-outline-color, var(--md-sys-color-on-surface, #1d1b20));--_disabled-outline-opacity: var(--md-outlined-button-disabled-outline-opacity, 0.12);--_focus-label-text-color: var(--md-outlined-button-focus-label-text-color, var(--md-sys-color-primary, #6750a4));--_hover-label-text-color: var(--md-outlined-button-hover-label-text-color, var(--md-sys-color-primary, #6750a4));--_hover-state-layer-color: var(--md-outlined-button-hover-state-layer-color, var(--md-sys-color-primary, #6750a4));--_hover-state-layer-opacity: var(--md-outlined-button-hover-state-layer-opacity, 0.08);--_label-text-color: var(--md-outlined-button-label-text-color, var(--md-sys-color-primary, #6750a4));--_label-text-font: var(--md-outlined-button-label-text-font, var(--md-sys-typescale-label-large-font, var(--md-ref-typeface-plain, Roboto)));--_label-text-line-height: var(--md-outlined-button-label-text-line-height, var(--md-sys-typescale-label-large-line-height, 1.25rem));--_label-text-size: var(--md-outlined-button-label-text-size, var(--md-sys-typescale-label-large-size, 0.875rem));--_label-text-weight: var(--md-outlined-button-label-text-weight, var(--md-sys-typescale-label-large-weight, var(--md-ref-typeface-weight-medium, 500)));--_outline-color: var(--md-outlined-button-outline-color, var(--md-sys-color-outline, #79747e));--_outline-width: var(--md-outlined-button-outline-width, 1px);--_pressed-label-text-color: var(--md-outlined-button-pressed-label-text-color, var(--md-sys-color-primary, #6750a4));--_pressed-outline-color: var(--md-outlined-button-pressed-outline-color, var(--md-sys-color-outline, #79747e));--_pressed-state-layer-color: var(--md-outlined-button-pressed-state-layer-color, var(--md-sys-color-primary, #6750a4));--_pressed-state-layer-opacity: var(--md-outlined-button-pressed-state-layer-opacity, 0.12);--_disabled-icon-color: var(--md-outlined-button-disabled-icon-color, var(--md-sys-color-on-surface, #1d1b20));--_disabled-icon-opacity: var(--md-outlined-button-disabled-icon-opacity, 0.38);--_focus-icon-color: var(--md-outlined-button-focus-icon-color, var(--md-sys-color-primary, #6750a4));--_hover-icon-color: var(--md-outlined-button-hover-icon-color, var(--md-sys-color-primary, #6750a4));--_icon-color: var(--md-outlined-button-icon-color, var(--md-sys-color-primary, #6750a4));--_icon-size: var(--md-outlined-button-icon-size, 18px);--_pressed-icon-color: var(--md-outlined-button-pressed-icon-color, var(--md-sys-color-primary, #6750a4));--_container-shape-start-start: var(--md-outlined-button-container-shape-start-start, var(--md-outlined-button-container-shape, var(--md-sys-shape-corner-full, 9999px)));--_container-shape-start-end: var(--md-outlined-button-container-shape-start-end, var(--md-outlined-button-container-shape, var(--md-sys-shape-corner-full, 9999px)));--_container-shape-end-end: var(--md-outlined-button-container-shape-end-end, var(--md-outlined-button-container-shape, var(--md-sys-shape-corner-full, 9999px)));--_container-shape-end-start: var(--md-outlined-button-container-shape-end-start, var(--md-outlined-button-container-shape, var(--md-sys-shape-corner-full, 9999px)));--_leading-space: var(--md-outlined-button-leading-space, 24px);--_trailing-space: var(--md-outlined-button-trailing-space, 24px);--_with-leading-icon-leading-space: var(--md-outlined-button-with-leading-icon-leading-space, 16px);--_with-leading-icon-trailing-space: var(--md-outlined-button-with-leading-icon-trailing-space, 24px);--_with-trailing-icon-leading-space: var(--md-outlined-button-with-trailing-icon-leading-space, 24px);--_with-trailing-icon-trailing-space: var(--md-outlined-button-with-trailing-icon-trailing-space, 16px);--_container-color: none;--_disabled-container-color: none;--_disabled-container-opacity: 0}.outline{inset:0;border-style:solid;position:absolute;box-sizing:border-box;border-color:var(--_outline-color);border-start-start-radius:var(--_container-shape-start-start);border-start-end-radius:var(--_container-shape-start-end);border-end-start-radius:var(--_container-shape-end-start);border-end-end-radius:var(--_container-shape-end-end)}:host(:active) .outline{border-color:var(--_pressed-outline-color)}:host(:is([disabled],[soft-disabled])) .outline{border-color:var(--_disabled-outline-color);opacity:var(--_disabled-outline-opacity)}@media(forced-colors: active){:host(:is([disabled],[soft-disabled])) .background{border-color:GrayText}:host(:is([disabled],[soft-disabled])) .outline{opacity:1}}.outline,md-ripple{border-width:var(--_outline-width)}md-ripple{inline-size:calc(100% - 2*var(--_outline-width));block-size:calc(100% - 2*var(--_outline-width));border-style:solid;border-color:rgba(0,0,0,0)}
-`;
-
-},{"lit":"4antt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["j0nGe","gg0zR"], "gg0zR", "parcelRequire94c2")
+},{"lit":"4antt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["4cgoj","gg0zR"], "gg0zR", "parcelRequire94c2")
 
 //# sourceMappingURL=index.54632f9a.js.map
