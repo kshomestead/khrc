@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <title>My Single Page Website</title>
+  
   <!-- Viewport Meta Tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <!-- Include Material Web Components -->
   <script type="module">
     import '@material/web/button/text-button.js';
@@ -13,9 +15,14 @@
     import '@material/web/iconbutton/icon-button.js';
     import '@material/web/icon/icon.js';
     import '@material/web/textfield/filled-text-field.js';
+    import '@material/web/menu/menu.js';
+    import '@material/web/menu/menu-item.js';
+    import '@material/web/list/list-item.js';
   </script>
+  
   <!-- Material Symbols -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  
   <!-- Link to Stylesheet -->
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -23,26 +30,48 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-left">
+      <!-- Logo -->
       <div class="navbar-logo">
-        <!-- Logo (src set via JavaScript due to Parcel) -->
         <a href="#" class="logo-link">
           <img alt="Logo" class="logo-image" id="logo-image">
         </a>
       </div>
-      <!-- Theme Toggle Button -->
-      <md-icon-button id="toggle-theme" aria-label="Toggle Theme">
-        <md-icon class="material-symbols-outlined">dark_mode</md-icon>
-      </md-icon-button>
     </div>
+
+    <!-- Desktop Navigation Links -->
     <div class="navbar-links">
       <md-text-button class="nav-button" data-target="home">Home</md-text-button>
       <md-text-button class="nav-button" data-target="about">About Us</md-text-button>
       <md-text-button class="nav-button" data-target="contact">Contact Us</md-text-button>
       <md-text-button class="nav-button" data-target="account">Account Portal</md-text-button>
     </div>
+
+    <!-- Theme Toggle and Menu Button -->
+    <div class="navbar-right">
+      <!-- Theme Toggle Button -->
+      <md-icon-button id="toggle-theme" aria-label="Toggle Theme">
+        <md-icon class="material-symbols-outlined">dark_mode</md-icon>
+      </md-icon-button>
+
+      <!-- Menu Button and Menu Component Wrapped in Relative Container -->
+      <span style="position: relative">
+        <!-- Menu Button for Mobile -->
+        <md-icon-button id="menu-button" aria-label="Menu">
+          <md-icon class="material-symbols-outlined">menu</md-icon>
+        </md-icon-button>
+
+        <!-- Menu Component -->
+        <md-menu id="nav-menu" anchor="menu-button" position="below">
+          <md-menu-item class="menu-nav-item" data-target="home">Home</md-menu-item>
+          <md-menu-item class="menu-nav-item" data-target="about">About Us</md-menu-item>
+          <md-menu-item class="menu-nav-item" data-target="contact">Contact Us</md-menu-item>
+          <md-menu-item class="menu-nav-item" data-target="account">Account Portal</md-menu-item>
+        </md-menu>
+      </span>
+    </div>
   </nav>
 
-  <!-- Sections -->
+  <!-- Main Content -->
   <main class="main-content">
     <!-- Home Section -->
     <div id="home" class="section card active">
