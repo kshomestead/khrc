@@ -586,49 +586,126 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"gLLPy":[function(require,module,exports,__globalThis) {
 // main.js
-// Query all sections and nav buttons
-const sections = document.querySelectorAll('.section');
-const navButtons = document.querySelectorAll('.nav-button');
-// Function to switch visible sections
-const switchSection = (targetId)=>{
-    // Hide all sections
-    sections.forEach((section)=>{
-        section.classList.remove('active');
+// Import the logo SVG files
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _logoLightSvg = require("./assets/logo-light.svg");
+var _logoLightSvgDefault = parcelHelpers.interopDefault(_logoLightSvg);
+var _logoDarkSvg = require("./assets/logo-dark.svg");
+var _logoDarkSvgDefault = parcelHelpers.interopDefault(_logoDarkSvg);
+document.addEventListener('DOMContentLoaded', ()=>{
+    // Query all sections and nav buttons
+    const sections = document.querySelectorAll('.section');
+    const navButtons = document.querySelectorAll('.nav-button');
+    // Function to switch visible sections
+    const switchSection = (targetId)=>{
+    // ... existing code ...
+    };
+    // Add event listeners to all nav buttons
+    // ... existing code ...
+    // Function to update the logo based on the theme
+    const updateLogo = ()=>{
+        const logoImage = document.getElementById('logo-image');
+        const isDarkTheme = document.documentElement.classList.contains('dark-theme');
+        if (logoImage) logoImage.src = isDarkTheme ? (0, _logoDarkSvgDefault.default) : (0, _logoLightSvgDefault.default);
+        else console.error('Logo image element not found.');
+    };
+    // Theme toggling
+    const toggleThemeButton = document.getElementById('toggle-theme');
+    toggleThemeButton.addEventListener('click', ()=>{
+        document.documentElement.classList.toggle('dark-theme');
+        const isDarkTheme = document.documentElement.classList.contains('dark-theme');
+        toggleThemeButton.querySelector('.material-symbols-outlined').textContent = isDarkTheme ? 'light_mode' : 'dark_mode';
+        // Save the user's theme preference
+        localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+        // Update the logo when the theme changes
+        updateLogo();
     });
-    // Remove active class from all buttons
-    navButtons.forEach((button)=>{
-        button.classList.remove('active');
-    });
-    // Show the target section
-    const targetSection = document.getElementById(targetId);
-    if (targetSection) {
-        targetSection.classList.add('active');
-        targetSection.scrollIntoView({
-            behavior: 'smooth'
-        });
+    // Initialize theme and logo on page load
+    // Retrieve the saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-theme');
+        toggleThemeButton.querySelector('.material-symbols-outlined').textContent = 'light_mode';
+    } else {
+        document.documentElement.classList.remove('dark-theme');
+        toggleThemeButton.querySelector('.material-symbols-outlined').textContent = 'dark_mode';
     }
-    // Highlight the active button
-    navButtons.forEach((button)=>{
-        if (button.getAttribute('data-target') === targetId) button.classList.add('active');
+    // Update the logo based on the current theme
+    updateLogo();
+    // Initialize the first section as active
+    switchSection('home');
+});
+
+},{"./assets/logo-light.svg":"5pwtW","./assets/logo-dark.svg":"bNlUg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5pwtW":[function(require,module,exports,__globalThis) {
+module.exports = require("14214b28a39bf7cc").getBundleURL('gnRNX') + "logo-light.d0f5791d.svg" + "?" + Date.now();
+
+},{"14214b28a39bf7cc":"lgJ39"}],"lgJ39":[function(require,module,exports,__globalThis) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"bNlUg":[function(require,module,exports,__globalThis) {
+module.exports = require("69b1e80c01f54b25").getBundleURL('gnRNX') + "logo-dark.905b8ba8.svg" + "?" + Date.now();
+
+},{"69b1e80c01f54b25":"lgJ39"}],"gkKU3":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
     });
 };
-// Add event listeners to all nav buttons
-navButtons.forEach((button)=>{
-    const targetId = button.getAttribute('data-target');
-    if (targetId) button.addEventListener('click', (e)=>{
-        e.preventDefault();
-        switchSection(targetId);
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
     });
-});
-// Theme toggling
-const toggleThemeButton = document.getElementById('toggle-theme');
-toggleThemeButton.addEventListener('click', ()=>{
-    document.documentElement.classList.toggle('dark-theme');
-    const isDarkTheme = document.documentElement.classList.contains('dark-theme');
-    toggleThemeButton.querySelector('.material-symbols-outlined').textContent = isDarkTheme ? 'light_mode' : 'dark_mode';
-});
-// Initialize the first section as active
-switchSection('home');
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
 },{}]},["kkVg0","gLLPy"], "gLLPy", "parcelRequire94c2")
 

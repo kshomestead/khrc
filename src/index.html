@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>My Single Page Website</title>
+  <!-- Viewport Meta Tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Include Material Web Components -->
   <script type="module">
     import '@material/web/button/text-button.js';
@@ -22,9 +24,9 @@
   <nav class="navbar">
     <div class="navbar-left">
       <div class="navbar-logo">
-        <!-- Logo as an external SVG file -->
+        <!-- Logo (src set via JavaScript due to Parcel) -->
         <a href="#" class="logo-link">
-          <img src="./assets/logo.svg" alt="Logo" class="logo-image">
+          <img alt="Logo" class="logo-image" id="logo-image">
         </a>
       </div>
       <!-- Theme Toggle Button -->

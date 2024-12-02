@@ -36,7 +36,6 @@
   --md-sys-color-on-error: #fff;
   --md-sys-color-error-container: #ffdad6;
   --md-sys-color-on-error-container: #410002;
-  --logo-filter: invert(15%) sepia(75%) saturate(350%) hue-rotate(20deg) brightness(95%) contrast(90%);
 }
 
 .dark-theme {
@@ -77,7 +76,6 @@
   --md-sys-color-on-error: #690005;
   --md-sys-color-error-container: #93000a;
   --md-sys-color-on-error-container: #ffdad6;
-  --logo-filter: invert(93%) sepia(31%) saturate(1143%) hue-rotate(320deg) brightness(95%) contrast(91%);
 }
 
 html, body {
@@ -102,6 +100,7 @@ body {
   background-color: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
   z-index: 1000;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -130,8 +129,6 @@ body {
 .logo-image {
   width: auto;
   height: 50px;
-  filter: var(--logo-filter);
-  transition: filter .3s;
 }
 
 #toggle-theme, #toggle-theme md-icon {
@@ -179,12 +176,16 @@ body {
 }
 
 .main-content {
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   padding-top: 100px;
+  display: flex;
 }
 
 .section {
-  width: 90%;
+  width: 80%;
+  max-width: 800px;
   margin: 16px auto;
   padding: 16px;
   display: none;
@@ -202,6 +203,7 @@ body {
 }
 
 .account-card {
+  width: 100%;
   max-width: 400px;
   margin: 16px auto;
   padding: 32px;
@@ -250,34 +252,40 @@ body {
 
 @media (width <= 768px) {
   .navbar {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-left {
+    justify-content: space-between;
+    width: 100%;
   }
 
   .navbar-links {
-    justify-content: flex-end;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     width: 100%;
-    margin-top: 8px;
   }
 
   .nav-button {
-    flex: auto;
+    box-sizing: border-box;
+    flex: 50%;
   }
 
   .account-card {
     width: 90%;
     max-width: none;
   }
+
+  .section {
+    width: 90%;
+  }
 }
 
 @media (width <= 480px) {
-  .navbar-links {
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
   .nav-button {
-    text-align: right;
-    width: 100%;
+    text-align: left;
+    flex: 100%;
   }
 
   .section {
@@ -287,6 +295,7 @@ body {
   }
 
   .account-card {
+    width: 95%;
     padding: 16px;
   }
 }

@@ -2,7 +2,7 @@
 
 /* Light Theme Variables (Default) */
 :root {
-  /* Your provided light theme tokens */
+  /* Light theme color tokens */
   --md-sys-color-background: #fff8f1;
   --md-sys-color-on-background: #1e1b14;
   --md-sys-color-surface: #fff8f1;
@@ -23,7 +23,7 @@
   --md-sys-color-shadow: #000000;
   --md-sys-color-scrim: #000000;
   --md-sys-color-surface-tint: #755b00;
-  --md-sys-color-primary: #594400;
+  --md-sys-color-primary: #594400; /* Dark golden color */
   --md-sys-color-on-primary: #ffffff;
   --md-sys-color-primary-container: #846700;
   --md-sys-color-on-primary-container: #ffffff;
@@ -40,9 +40,6 @@
   --md-sys-color-on-error: #ffffff;
   --md-sys-color-error-container: #ffdad6;
   --md-sys-color-on-error-container: #410002;
-
-  /* Logo Filter for Light Mode */
-  --logo-filter: invert(15%) sepia(75%) saturate(350%) hue-rotate(20deg) brightness(95%) contrast(90%);
 }
 
 /* Dark Theme Variables */
@@ -67,10 +64,10 @@
   --md-sys-color-shadow: #000000;
   --md-sys-color-scrim: #000000;
   --md-sys-color-surface-tint: #e8c25d;
-  --md-sys-color-primary: #e8c25d; /* Golden color */
+  --md-sys-color-primary: #e8c25d; /* Light golden color */
   --md-sys-color-on-primary: #3d2e00;
   --md-sys-color-primary-container: #785e00;
-  --md-sys-color-on-primary-container: #ffffff; /* White color */
+  --md-sys-color-on-primary-container: #ffffff;
   --md-sys-color-inverse-primary: #755b00;
   --md-sys-color-secondary: #d9c595;
   --md-sys-color-on-secondary: #3b2f0c;
@@ -84,9 +81,6 @@
   --md-sys-color-on-error: #690005;
   --md-sys-color-error-container: #93000a;
   --md-sys-color-on-error-container: #ffdad6;
-
-  /* Logo Filter for Dark Mode */
-  --logo-filter: invert(93%) sepia(31%) saturate(1143%) hue-rotate(320deg) brightness(95%) contrast(91%);
 }
 
 /* General Styles */
@@ -111,6 +105,7 @@ body {
 /* Navbar Styles */
 .navbar {
   display: flex;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
   align-items: center;
   justify-content: space-between;
   padding: 16px;
@@ -141,8 +136,6 @@ body {
 .logo-image {
   height: 50px;
   width: auto;
-  filter: var(--logo-filter);
-  transition: filter 0.3s ease;
 }
 
 #toggle-theme {
@@ -153,6 +146,7 @@ body {
   color: var(--md-sys-color-on-surface);
 }
 
+/* Navbar Links */
 .navbar-links {
   display: flex;
   align-items: center;
@@ -175,11 +169,11 @@ body {
 
 .nav-button:hover,
 .nav-button.active {
-  background-color: rgba(232, 194, 93, 0.1); /* Light golden background */
+  background-color: rgba(232, 194, 93, 0.1);
 }
 
 .nav-button.active {
-  font-weight: bold; /* Make the text bold when active */
+  font-weight: bold;
 }
 
 .nav-button:hover md-icon,
@@ -207,11 +201,15 @@ body {
 .main-content {
   padding-top: 100px; /* Account for fixed navbar */
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .section {
   display: none;
-  width: 90%; /* Make the card almost full width */
+  width: 80%;
+  max-width: 800px;
   margin: 16px auto;
   padding: 16px;
 }
@@ -232,7 +230,8 @@ body {
 
 /* Account Portal Card Specific Styles */
 .account-card {
-  max-width: 400px; /* Set appropriate max width */
+  max-width: 400px;
+  width: 100%;
   margin: 16px auto;
   padding: 32px;
 }
@@ -246,8 +245,8 @@ body {
 
 .login-form md-filled-text-field {
   width: 100%;
-  --md-comp-text-field-container-height: 48px; /* Adjust text field height */
-  --md-comp-text-field-input-font-size: 16px; /* Adjust font size */
+  --md-comp-text-field-container-height: 48px;
+  --md-comp-text-field-input-font-size: 16px;
 }
 
 .form-actions {
@@ -257,7 +256,7 @@ body {
 }
 
 .form-actions md-filled-button {
-  --md-comp-button-height: 40px; /* Adjust button height */
+  --md-comp-button-height: 40px;
   --md-comp-button-container-color: var(--md-sys-color-primary);
   --md-comp-button-label-text-color: var(--md-sys-color-on-primary);
   font-size: 16px;
@@ -282,43 +281,50 @@ body {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .navbar {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-left {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .navbar-links {
-    margin-top: 8px;
-    justify-content: flex-end;
     width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 
   .nav-button {
-    flex: 1 1 auto;
+    flex: 1 1 50%;
+    box-sizing: border-box;
   }
 
   .account-card {
     width: 90%;
     max-width: none;
   }
+
+  .section {
+    width: 90%;
+  }
 }
 
 @media (max-width: 480px) {
-  .navbar-links {
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
   .nav-button {
-    width: 100%;
-    text-align: right;
+    flex: 1 1 100%;
+    text-align: left;
   }
 
   .section {
+    width: 95%;
     padding: 12px;
     margin: 12px;
-    width: 95%; /* Adjust for mobile devices */
   }
 
   .account-card {
+    width: 95%;
     padding: 16px;
   }
 }
