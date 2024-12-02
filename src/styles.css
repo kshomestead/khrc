@@ -1,24 +1,132 @@
+/* styles.css */
+
+/* Light Theme Variables (Default) */
+:root {
+  /* Your provided light theme tokens */
+  --md-sys-color-background: #fff8f1;
+  --md-sys-color-on-background: #1e1b14;
+  --md-sys-color-surface: #fff8f1;
+  --md-sys-color-surface-dim: #e1d9ce;
+  --md-sys-color-surface-bright: #fff8f1;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #fbf2e7;
+  --md-sys-color-surface-container: #f5ede1; /* Lighter brown for cards */
+  --md-sys-color-surface-container-high: #efe7db;
+  --md-sys-color-surface-container-highest: #e9e1d6;
+  --md-sys-color-on-surface: #1e1b14;
+  --md-sys-color-surface-variant: #ede1cc;
+  --md-sys-color-on-surface-variant: #4d4637;
+  --md-sys-color-inverse-surface: #343028;
+  --md-sys-color-inverse-on-surface: #f8f0e4;
+  --md-sys-color-outline: #7f7665;
+  --md-sys-color-outline-variant: #d0c5b1;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-surface-tint: #755b00;
+  --md-sys-color-primary: #594400;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #846700;
+  --md-sys-color-on-primary-container: #ffffff;
+  --md-sys-color-inverse-primary: #e8c25d;
+  --md-sys-color-secondary: #6c5d36;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #fbe5b3;
+  --md-sys-color-on-secondary-container: #574924;
+  --md-sys-color-tertiary: #384e03;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #5b7328;
+  --md-sys-color-on-tertiary-container: #ffffff;
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffdad6;
+  --md-sys-color-on-error-container: #410002;
+
+  /* Logo Filter for Light Mode */
+  --logo-filter: invert(15%) sepia(75%) saturate(350%) hue-rotate(20deg) brightness(95%) contrast(90%);
+}
+
+/* Dark Theme Variables */
+.dark-theme {
+  --md-sys-color-background: #16130c;
+  --md-sys-color-on-background: #e9e1d6;
+  --md-sys-color-surface: #16130c;
+  --md-sys-color-surface-dim: #16130c;
+  --md-sys-color-surface-bright: #3d3931;
+  --md-sys-color-surface-container-lowest: #110e08;
+  --md-sys-color-surface-container-low: #1e1b14;
+  --md-sys-color-surface-container: #231f18; /* Darker brown for cards */
+  --md-sys-color-surface-container-high: #2d2a22;
+  --md-sys-color-surface-container-highest: #38342c;
+  --md-sys-color-on-surface: #e9e1d6;
+  --md-sys-color-surface-variant: #4d4637;
+  --md-sys-color-on-surface-variant: #d0c5b1;
+  --md-sys-color-inverse-surface: #e9e1d6;
+  --md-sys-color-inverse-on-surface: #343028;
+  --md-sys-color-outline: #99907d;
+  --md-sys-color-outline-variant: #4d4637;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-surface-tint: #e8c25d;
+  --md-sys-color-primary: #e8c25d; /* Golden color */
+  --md-sys-color-on-primary: #3d2e00;
+  --md-sys-color-primary-container: #785e00;
+  --md-sys-color-on-primary-container: #ffffff; /* White color */
+  --md-sys-color-inverse-primary: #755b00;
+  --md-sys-color-secondary: #d9c595;
+  --md-sys-color-on-secondary: #3b2f0c;
+  --md-sys-color-secondary-container: #493c18;
+  --md-sys-color-on-secondary-container: #e4cf9e;
+  --md-sys-color-tertiary: #b5d17a;
+  --md-sys-color-on-tertiary: #253600;
+  --md-sys-color-tertiary-container: #51691f;
+  --md-sys-color-on-tertiary-container: #ffffff;
+  --md-sys-color-error: #ffb4ab;
+  --md-sys-color-on-error: #690005;
+  --md-sys-color-error-container: #93000a;
+  --md-sys-color-on-error-container: #ffdad6;
+
+  /* Logo Filter for Dark Mode */
+  --logo-filter: invert(93%) sepia(31%) saturate(1143%) hue-rotate(320deg) brightness(95%) contrast(91%);
+}
+
 /* General Styles */
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
   font-family: 'Roboto', sans-serif;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
 /* Navbar Styles */
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #6f8b75; /* A rich, natural green */
-  color: rgb(6, 6, 6);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  padding: 16px;
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
   position: fixed;
   top: 0;
-  width: 100%; /* Ensure it spans the full viewport width */
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  box-sizing: border-box; /* Include padding in the navbar width */
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .navbar-logo {
@@ -26,106 +134,191 @@ body {
   align-items: center;
 }
 
+.logo-link {
+  text-decoration: none;
+}
+
 .logo-image {
-  height: 40px; /* Adjust the height based on your design */
-  width: auto; /* Maintain the image's aspect ratio */
-  object-fit: contain; /* Ensure the image fits within the navbar without distortion */
+  height: 50px;
+  width: auto;
+  filter: var(--logo-filter);
+  transition: filter 0.3s ease;
+}
+
+#toggle-theme {
+  color: var(--md-sys-color-on-surface);
+}
+
+#toggle-theme md-icon {
+  color: var(--md-sys-color-on-surface);
 }
 
 .navbar-links {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  gap: 8px;
 }
 
-md-elevated-button {
-  font-weight: 400;
-  text-transform: none; /* Remove uppercase text */
+/* Navbar Button Styles */
+.nav-button {
+  --md-comp-button-label-text-color: var(--md-sys-color-primary);
+  --md-comp-button-hover-state-layer-color: rgba(232, 194, 93, 0.1);
+  color: var(--md-sys-color-primary);
+  background-color: transparent;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
 }
 
-md-outlined-button {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400; /* Regular weight */
-  text-transform: none; /* Prevent uppercase */
-  background-color: transparent; /* Default transparent background */
-  color: #010201; /* Button text color */
-  border: 2px solid #2a5d34; /* Green border */
-  border-radius: 4px; /* Optional: Rounded corners */
-  padding: 10px 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.nav-button:hover,
+.nav-button.active {
+  background-color: rgba(232, 194, 93, 0.1); /* Light golden background */
 }
 
-md-outlined-button:hover {
-  background-color: #afb5b1; /* Fill with green on hover */
-  cursor: pointer; /* Pointer cursor to indicate interactivity */
+.nav-button.active {
+  font-weight: bold; /* Make the text bold when active */
 }
 
-md-outlined-button:focus {
-  outline: none;
+.nav-button:hover md-icon,
+.nav-button.active md-icon {
+  color: var(--md-sys-color-primary);
 }
 
-@media (max-width: 768px) {
-  .navbar-links {
-    display: none; /* Hide links on smaller screens */
-  }
+/* Override default link styles */
+.nav-button:link,
+.nav-button:visited,
+.nav-button:hover,
+.nav-button:active {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
 }
 
-/* Section Styles */
+.nav-button.active:link,
+.nav-button.active:visited,
+.nav-button.active:hover,
+.nav-button.active:active {
+  color: var(--md-sys-color-primary);
+}
+
+/* Main Content */
+.main-content {
+  padding-top: 100px; /* Account for fixed navbar */
+  width: 100%;
+}
+
 .section {
   display: none;
-  min-height: 100vh;
-  padding: 2rem;
-  padding-top: 5rem; /* Account for fixed navbar */
+  width: 90%; /* Make the card almost full width */
+  margin: 16px auto;
+  padding: 16px;
 }
 
 .section.active {
   display: block;
 }
 
-.section h2 {
-  font-size: 2rem;
-  color: #2a5d34;
+/* Custom Elevated Card Styles */
+.card {
+  background-color: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  border-radius: 12px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2),
+              0px 1px 2px rgba(0, 0, 0, 0.14),
+              0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
-/* Bottom Navigation Bar Styles */
-.bottom-nav {
-  display: none; /* Initially hidden */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #2a5d34; /* Same green as navbar */
-  color: white;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0.5rem 0;
-  box-sizing: border-box;
+/* Account Portal Card Specific Styles */
+.account-card {
+  max-width: 400px; /* Set appropriate max width */
+  margin: 16px auto;
+  padding: 32px;
 }
 
-.bottom-nav .nav-item {
+/* Login Form Styles */
+.login-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-size: 0.875rem; /* Smaller text for icons */
-  color: #f9f6ee; /* Warm white */
-  text-decoration: none;
-  border: none;
-  background: none;
-  cursor: pointer;
+  gap: 16px;
 }
 
-.bottom-nav .nav-item:hover {
-  color: #bb86fc; /* Material Design secondary color */
+.login-form md-filled-text-field {
+  width: 100%;
+  --md-comp-text-field-container-height: 48px; /* Adjust text field height */
+  --md-comp-text-field-input-font-size: 16px; /* Adjust font size */
 }
 
-.bottom-nav .material-symbols-outlined {
-  font-size: 1.5rem; /* Icon size */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
 }
 
-/* Show Bottom Navigation Bar on Smaller Screens */
+.form-actions md-filled-button {
+  --md-comp-button-height: 40px; /* Adjust button height */
+  --md-comp-button-container-color: var(--md-sys-color-primary);
+  --md-comp-button-label-text-color: var(--md-sys-color-on-primary);
+  font-size: 16px;
+}
+
+.form-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.form-links md-text-button {
+  --md-comp-button-label-text-color: var(--md-sys-color-primary);
+  padding: 0;
+  font-size: 14px;
+}
+
+.form-links md-text-button:hover {
+  background-color: transparent;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-  .bottom-nav {
-    display: flex; /* Visible only on small screens */
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar-links {
+    margin-top: 8px;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .nav-button {
+    flex: 1 1 auto;
+  }
+
+  .account-card {
+    width: 90%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-links {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .nav-button {
+    width: 100%;
+    text-align: right;
+  }
+
+  .section {
+    padding: 12px;
+    margin: 12px;
+    width: 95%; /* Adjust for mobile devices */
+  }
+
+  .account-card {
+    padding: 16px;
   }
 }

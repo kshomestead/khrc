@@ -1,66 +1,86 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agricultural Lending SPA</title>
-  <!-- Material Web Buttons -->
+  <title>My Single Page Website</title>
+  <!-- Include Material Web Components -->
+  <script type="module">
+    import '@material/web/button/text-button.js';
+    import '@material/web/button/filled-button.js';
+    import '@material/web/iconbutton/icon-button.js';
+    import '@material/web/icon/icon.js';
+    import '@material/web/textfield/filled-text-field.js';
+  </script>
+  <!-- Material Symbols -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-  <script type="module" src="./app.ts"></script>
+  <!-- Link to Stylesheet -->
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <!-- Replace text logo with an image -->
-    <div class="navbar-logo">
-      <img src="./static/logolong.png" alt="AgriLend Logo" class="logo-image">
+    <div class="navbar-left">
+      <div class="navbar-logo">
+        <!-- Logo as an external SVG file -->
+        <a href="#" class="logo-link">
+          <img src="./assets/logo.svg" alt="Logo" class="logo-image">
+        </a>
+      </div>
+      <!-- Theme Toggle Button -->
+      <md-icon-button id="toggle-theme" aria-label="Toggle Theme">
+        <md-icon class="material-symbols-outlined">dark_mode</md-icon>
+      </md-icon-button>
     </div>
     <div class="navbar-links">
-      <md-outlined-button class="custom-button" data-target="about">About Us</md-outlined-button>
-      <md-outlined-button class="custom-button" data-target="board">Our Board</md-outlined-button>
-      <md-outlined-button class="custom-button" data-target="contact">Contact Us</md-outlined-button>
-      <md-outlined-button class="custom-button" data-target="account">Account Portal</md-outlined-button>
+      <md-text-button class="nav-button" data-target="home">Home</md-text-button>
+      <md-text-button class="nav-button" data-target="about">About Us</md-text-button>
+      <md-text-button class="nav-button" data-target="contact">Contact Us</md-text-button>
+      <md-text-button class="nav-button" data-target="account">Account Portal</md-text-button>
     </div>
-  </nav>
-
-  <!-- Bottom Navigation Bar for Mobile -->
-  <nav class="bottom-nav">
-    <button class="nav-item" data-target="about">
-      <span class="material-symbols-outlined">info</span>
-      <span>About</span>
-    </button>
-    <button class="nav-item" data-target="board">
-      <span class="material-symbols-outlined">group</span>
-      <span>Board</span>
-    </button>
-    <button class="nav-item" data-target="contact">
-      <span class="material-symbols-outlined">mail</span>
-      <span>Contact</span>
-    </button>
-    <button class="nav-item" data-target="account">
-      <span class="material-symbols-outlined">account_circle</span>
-      <span>Account</span>
-    </button>
   </nav>
 
   <!-- Sections -->
-  <section id="about" class="section active">
-    <h2>About Us</h2>
-    <p>AgriLend empowers agricultural businesses through customized lending solutions designed to meet their specific needs.</p>
-  </section>
-  <section id="board" class="section">
-    <h2>Our Board</h2>
-    <p>Our experienced board of directors brings decades of expertise to guide our vision and mission.</p>
-  </section>
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p>Have questions? Reach out to us at <a href="mailto:support@agrilend.com">support@agrilend.com</a> or call us at (555) 123-4567.</p>
-  </section>
-  <section id="account" class="section">
-    <h2>Account Portal</h2>
-    <p>Access your account to manage loans, view statements, and update your information.</p>
-    <a href="/account" class="portal-link">Go to Account Portal</a>
-  </section>
+  <main class="main-content">
+    <!-- Home Section -->
+    <div id="home" class="section card active">
+      <h1>Welcome to Our Website</h1>
+      <p>This is the home section.</p>
+    </div>
+
+    <!-- About Us Section -->
+    <div id="about" class="section card">
+      <h1>About Us</h1>
+      <p>Information about our company.</p>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div id="contact" class="section card">
+      <h1>Contact Us</h1>
+      <p>Contact information and form.</p>
+    </div>
+
+    <!-- Account Portal Section -->
+    <div id="account" class="section">
+      <div class="card account-card">
+        <h1>Account Portal</h1>
+        <!-- Login Form -->
+        <form id="login-form" class="login-form">
+          <md-filled-text-field label="Username" id="username" required></md-filled-text-field>
+          <md-filled-text-field label="Password" type="password" id="password" required></md-filled-text-field>
+          <div class="form-actions">
+            <md-filled-button type="submit">Login</md-filled-button>
+          </div>
+          <div class="form-links">
+            <md-text-button id="forgot-password">Forgot Password?</md-text-button>
+            <md-text-button id="sign-up">Sign Up</md-text-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Main JavaScript -->
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
