@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,8 @@
   
   <!-- Material Symbols -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <!-- Link to Stylesheet -->
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -30,6 +30,11 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-left">
+      <!-- Menu Button for Mobile -->
+      <md-icon-button id="menu-button" aria-label="Menu">
+        <md-icon class="material-symbols-outlined">menu</md-icon>
+      </md-icon-button>
+
       <!-- Logo -->
       <div class="navbar-logo">
         <a href="#" class="logo-link">
@@ -40,49 +45,61 @@
 
     <!-- Desktop Navigation Links -->
     <div class="navbar-links">
-      <md-text-button class="nav-button" data-target="home">Home</md-text-button>
       <md-text-button class="nav-button" data-target="about">About Us</md-text-button>
       <md-text-button class="nav-button" data-target="contact">Contact Us</md-text-button>
-      <md-text-button class="nav-button" data-target="account">Account Portal</md-text-button>
+      <md-text-button class="nav-button" data-target="account">Account</md-text-button>
     </div>
 
-    <!-- Theme Toggle and Menu Button -->
+    <!-- Theme Toggle Button -->
     <div class="navbar-right">
-      <!-- Theme Toggle Button -->
       <md-icon-button id="toggle-theme" aria-label="Toggle Theme">
         <md-icon class="material-symbols-outlined">dark_mode</md-icon>
       </md-icon-button>
-
-      <!-- Menu Button and Menu Component Wrapped in Relative Container -->
-      <span style="position: relative">
-        <!-- Menu Button for Mobile -->
-        <md-icon-button id="menu-button" aria-label="Menu">
-          <md-icon class="material-symbols-outlined">menu</md-icon>
-        </md-icon-button>
-
-        <!-- Menu Component -->
-        <md-menu id="nav-menu" anchor="menu-button" position="below">
-          <md-menu-item class="menu-nav-item" data-target="home">Home</md-menu-item>
-          <md-menu-item class="menu-nav-item" data-target="about">About Us</md-menu-item>
-          <md-menu-item class="menu-nav-item" data-target="contact">Contact Us</md-menu-item>
-          <md-menu-item class="menu-nav-item" data-target="account">Account Portal</md-menu-item>
-        </md-menu>
-      </span>
     </div>
+
+    <!-- Menu Component -->
+    <md-menu id="nav-menu" anchor="menu-button" position="below-start">
+      <md-menu-item class="menu-nav-item" data-target="about">About Us</md-menu-item>
+      <md-menu-item class="menu-nav-item" data-target="contact">Contact Us</md-menu-item>
+      <md-menu-item class="menu-nav-item" data-target="account">Account</md-menu-item>
+    </md-menu>
   </nav>
 
   <!-- Main Content -->
   <main class="main-content">
-    <!-- Home Section -->
-    <div id="home" class="section card active">
-      <h1>Welcome to Our Website</h1>
-      <p>This is the home section.</p>
-    </div>
-
     <!-- About Us Section -->
-    <div id="about" class="section card">
+    <div id="about" class="section card active">
       <h1>About Us</h1>
-      <p>Information about our company.</p>
+      <p>Welcome to our website! We are committed to providing exceptional services to our clients.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h2>Board Members</h2>
+      <div class="board">
+        <div class="board-member">
+          <h3>John Doe</h3>
+          <p>Chairperson of the Board</p>
+        </div>
+        <div class="board-member">
+          <h3>Jane Smith</h3>
+          <p>Chief Financial Officer</p>
+        </div>
+        <div class="board-member">
+          <h3>James Brown</h3>
+          <p>Director of Operations</p>
+        </div>
+        <div class="board-member">
+          <h3>Mary Johnson</h3>
+          <p>Head of Marketing</p>
+        </div>
+        <div class="board-member">
+          <h3>William Davis</h3>
+          <p>Legal Advisor</p>
+        </div>
+        <div class="board-member">
+          <h3>Emily Wilson</h3>
+          <p>Technical Consultant</p>
+        </div>
+      </div>
     </div>
 
     <!-- Contact Us Section -->

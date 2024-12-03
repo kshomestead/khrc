@@ -1,8 +1,5 @@
-/* styles.css */
-
 /* Light Theme Variables (Default) */
 :root {
-  /* Light theme color tokens */
   --md-sys-color-background: #fff8f1;
   --md-sys-color-on-background: #1e1b14;
   --md-sys-color-surface: #fff8f1;
@@ -10,7 +7,7 @@
   --md-sys-color-surface-bright: #fff8f1;
   --md-sys-color-surface-container-lowest: #ffffff;
   --md-sys-color-surface-container-low: #fbf2e7;
-  --md-sys-color-surface-container: #f5ede1; /* Lighter brown for cards */
+  --md-sys-color-surface-container: #f5ede1;
   --md-sys-color-surface-container-high: #efe7db;
   --md-sys-color-surface-container-highest: #e9e1d6;
   --md-sys-color-on-surface: #1e1b14;
@@ -23,7 +20,7 @@
   --md-sys-color-shadow: #000000;
   --md-sys-color-scrim: #000000;
   --md-sys-color-surface-tint: #755b00;
-  --md-sys-color-primary: #594400; /* Dark golden color */
+  --md-sys-color-primary: #594400;
   --md-sys-color-on-primary: #ffffff;
   --md-sys-color-primary-container: #846700;
   --md-sys-color-on-primary-container: #ffffff;
@@ -51,7 +48,7 @@
   --md-sys-color-surface-bright: #3d3931;
   --md-sys-color-surface-container-lowest: #110e08;
   --md-sys-color-surface-container-low: #1e1b14;
-  --md-sys-color-surface-container: #231f18; /* Darker brown for cards */
+  --md-sys-color-surface-container: #231f18;
   --md-sys-color-surface-container-high: #2d2a22;
   --md-sys-color-surface-container-highest: #38342c;
   --md-sys-color-on-surface: #e9e1d6;
@@ -64,7 +61,7 @@
   --md-sys-color-shadow: #000000;
   --md-sys-color-scrim: #000000;
   --md-sys-color-surface-tint: #e8c25d;
-  --md-sys-color-primary: #e8c25d; /* Light golden color */
+  --md-sys-color-primary: #e8c25d;
   --md-sys-color-on-primary: #3d2e00;
   --md-sys-color-primary-container: #785e00;
   --md-sys-color-on-primary-container: #ffffff;
@@ -83,6 +80,11 @@
   --md-sys-color-on-error-container: #ffdad6;
 }
 
+/* Apply Inter font to all common text elements */
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Inter', sans-serif;
+}
+
 /* General Styles */
 html, body {
   margin: 0;
@@ -92,7 +94,7 @@ html, body {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: var(--md-sys-color-background);
   color: var(--md-sys-color-on-background);
   box-sizing: border-box;
@@ -123,11 +125,6 @@ body {
   gap: 16px;
 }
 
-.navbar-logo {
-  display: flex;
-  align-items: center;
-}
-
 .logo-link {
   text-decoration: none;
 }
@@ -137,39 +134,34 @@ body {
   width: auto;
 }
 
-#toggle-theme {
+#menu-button {
   color: var(--md-sys-color-on-surface);
+  display: none; /* Hide menu button on desktop */
 }
 
 #toggle-theme md-icon {
   color: var(--md-sys-color-on-surface);
 }
 
-/* Navbar Links */
 .navbar-links {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* Navbar Right Section */
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* Navbar Button Styles */
+/* Navbar Buttons */
 .nav-button {
-  --md-comp-button-label-text-color: var(--md-sys-color-primary);
-  --md-comp-button-hover-state-layer-color: rgba(232, 194, 93, 0.1);
   color: var(--md-sys-color-primary);
   background-color: transparent;
-  border: none;
   font-weight: 550;
-  font-size: 1.1rem; /* Added font-size */
+  font-size: 1.1rem;
   cursor: pointer;
-  text-decoration: none;
   padding: 8px 16px;
   border-radius: 4px;
 }
@@ -179,40 +171,9 @@ body {
   background-color: rgba(232, 194, 93, 0.1);
 }
 
-.nav-button.active {
-  font-weight: bold;
-}
-
-.nav-button:hover md-icon,
-.nav-button.active md-icon {
-  color: var(--md-sys-color-primary);
-}
-
-/* Override default link styles */
-.nav-button:link,
-.nav-button:visited,
-.nav-button:hover,
-.nav-button:active {
-  color: var(--md-sys-color-primary);
-  text-decoration: none;
-}
-
-.nav-button.active:link,
-.nav-button.active:visited,
-.nav-button.active:hover,
-.nav-button.active:active {
-  color: var(--md-sys-color-primary);
-}
-
-/* Hide the menu on desktop */
-#menu-button,
-#nav-menu {
-  display: none;
-}
-
 /* Main Content */
 .main-content {
-  padding-top: 100px; /* Account for fixed navbar */
+  padding-top: 100px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -231,117 +192,43 @@ body {
   display: block;
 }
 
-/* Custom Elevated Card Styles */
 .card {
   background-color: var(--md-sys-color-surface-container);
   color: var(--md-sys-color-on-surface);
   border-radius: 12px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2),
-              0px 1px 2px rgba(0, 0, 0, 0.14),
-              0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 2px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
-/* Account Portal Card Specific Styles */
-.account-card {
-  max-width: 400px;
-  width: 100%;
-  margin: 16px auto;
-  padding: 32px;
-}
-
-/* Login Form Styles */
-.login-form {
-  display: flex;
-  flex-direction: column;
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
 
-.login-form md-filled-text-field {
-  width: 100%;
-  --md-comp-text-field-container-height: 48px;
-  --md-comp-text-field-input-font-size: 16px;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 16px;
-}
-
-.form-actions md-filled-button {
-  --md-comp-button-height: 40px;
-  --md-comp-button-container-color: var(--md-sys-color-primary);
-  --md-comp-button-label-text-color: var(--md-sys-color-on-primary);
-  font-size: 16px;
-}
-
-.form-links {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-}
-
-.form-links md-text-button {
-  --md-comp-button-label-text-color: var(--md-sys-color-primary);
-  padding: 0;
-  font-size: 14px;
-}
-
-.form-links md-text-button:hover {
-  background-color: transparent;
+.board-member {
+  text-align: center;
+  padding: 16px;
+  background-color: var(--md-sys-color-surface);
+  border-radius: 8px;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  /* Hide desktop navbar links on mobile */
   .navbar-links {
     display: none;
   }
 
-  /* Show the menu button on mobile */
-  #menu-button,
+  #menu-button {
+    display: flex; /* Show menu button only on mobile */
+  }
+
   #nav-menu {
-    display: inline-flex;
-  }
-
-  /* Ensure menu is visible when active (handled by Material Web Components) */
-  /* Optionally, adjust menu positioning or z-index if necessary */
-  
-  /* Adjust navbar layout for mobile */
-  .navbar {
-    justify-content: space-between;
-  }
-
-  /* Ensure theme toggle button is visible */
-  #toggle-theme {
-    display: inline-flex;
-  }
-
-  /* Adjust main content width */
-  .section {
-    width: 90%;
-  }
-
-  .account-card {
-    width: 90%;
-    max-width: none;
+    display: block;
   }
 }
 
 @media (max-width: 480px) {
   .section {
     width: 95%;
-    padding: 12px;
-    margin: 12px;
   }
-
-  .account-card {
-    width: 95%;
-    padding: 16px;
-  }
-}
-
-/* Ensure the menu appears above other elements */
-md-menu {
-  z-index: 2000; /* Adjust as needed */
 }

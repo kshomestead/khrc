@@ -127,5 +127,5 @@ document.addEventListener('DOMContentLoaded', () => {
   updateLogo();
 
   // Initialize the first section as active
-  switchSection('home');
+  switchSection('about');
 });

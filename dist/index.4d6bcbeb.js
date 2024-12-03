@@ -694,7 +694,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     // Update the logo based on the current theme
     updateLogo();
     // Initialize the first section as active
-    switchSection('home');
+    switchSection('about');
 });
 
 },{"./assets/logo-light.svg":"5pwtW","./assets/logo-dark.svg":"bNlUg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5pwtW":[function(require,module,exports,__globalThis) {
